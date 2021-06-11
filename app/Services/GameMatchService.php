@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use App\Repositories\MatchLeagueRepository;
+use App\Repositories\GameMatchRepository;
 
-class MatchLeagueService
+class GameMatchService
 {
-    protected $matchLeagueRepository;
+    protected $gameMatchRepository;
 
-    public function __construct(MatchLeagueRepository $matchLeagueRepository)
+    public function __construct(GameMatchRepository $gameMatchRepository)
     {
-        $this->matchLeagueRepository = $matchLeagueRepository;
+        $this->gameMatchRepository = $gameMatchRepository;
     }
 
     public function getAll()
     {
-        return $this->matchLeagueRepository->getAllMatch()
+        return $this->gameMatchRepository->getAllMatch()
 ;    }
 }

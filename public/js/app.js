@@ -1907,6 +1907,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {},
   data: function data() {
@@ -1926,7 +1941,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     /* this.getMembers(); */
-    axios.get('https://jsonplaceholder.typicode.com/users').then(function (response) {
+    axios.get('/api/match').then(function (response) {
       console.log(response);
     })["catch"](function (error) {
       console.log(error);
@@ -37521,7 +37536,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "col-md-8" }, [
             _c("div", { staticClass: "card" }, [
               _c("div", { staticClass: "table-responsive" }, [
                 _c("table", { staticClass: "table" }, [
@@ -37529,27 +37544,19 @@ var staticRenderFns = [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v("Position")
-                      ]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Teams")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Club")]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("PTS")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Played")]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("P")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Won")]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("W")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Drawn")]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("D")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Lost")]),
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("L")]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("GF")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("GA")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Points")])
+                      _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")])
                     ])
                   ]),
                   _vm._v(" "),
@@ -37585,6 +37592,30 @@ var staticRenderFns = [
                     ])
                   ])
                 ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "card p-4 pb-5" }, [
+              _c("p", [_vm._v("Match Results")]),
+              _vm._v(" "),
+              _c("p", [_vm._v("4. Week Match Results")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("Liverpool")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("2-2")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("Chelsea")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("Liverpool")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("2-2")]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-4" }, [_vm._v("Chelsea")])
               ])
             ])
           ])

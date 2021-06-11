@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\MatchLeagueService;
+use App\Services\GameMatchService;
 use Exception;
 use Illuminate\Http\Request;
 
-class MatchLeagueController extends Controller
+class GameMatchController extends Controller
 {
 
-    private $matchLeagueService;
+    private $gameMatchService;
     
 
-    public function __construct(MatchLeagueService $matchLeagueService)
+    public function __construct(GameMatchService $gameMatchService)
     {
-        $this->matchLeagueService = $matchLeagueService;
+        $this->gameMatchService = $gameMatchService;
     }
     //
     public function index()
@@ -22,7 +22,7 @@ class MatchLeagueController extends Controller
         $result = ['status' => 200];
 
         try {
-            $result['data'] = $this->matchLeagueService->getAll()
+            $result['data'] = $this->gameMatchService->getAll()
 ;        }catch(Exception $e) {
             $result = [
                 'status' => 500,

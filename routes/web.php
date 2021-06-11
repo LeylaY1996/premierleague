@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\MatchLeagueController;
-use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*

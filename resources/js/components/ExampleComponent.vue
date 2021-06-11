@@ -12,23 +12,20 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
           <div class="card">
             <div class="table-responsive">
               <table class="table">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Club</th>
-                    <th scope="col">Played</th>
-                    <th scope="col">Won</th>
-                    <th scope="col">Drawn</th>
-                    <th scope="col">Lost</th>
-                    <th scope="col">GF</th>
-                    <th scope="col">GA</th>
+                    <th scope="col">Teams</th>
+                    <th scope="col">PTS</th>
+                    <th scope="col">P</th>
+                    <th scope="col">W</th>
+                    <th scope="col">D</th>
+                    <th scope="col">L</th>
                     <th scope="col">GD</th>
-                    <th scope="col">Points</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,6 +50,24 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card p-4 pb-5">
+          <p>Match Results</p>
+          <p>4. Week Match Results</p>
+          <div class="row">
+            <div class="col-md-4">Liverpool</div>
+            <div class="col-md-4">2-2</div>
+            <div class="col-md-4">Chelsea</div>
+
+          </div>
+           <div class="row">
+            <div class="col-md-4">Liverpool</div>
+            <div class="col-md-4">2-2</div>
+            <div class="col-md-4">Chelsea</div>
+
+          </div>
           </div>
         </div>
       </div>
@@ -82,7 +97,7 @@ methods: {
 },
 mounted() {
 /* this.getMembers(); */
-axios.get('https://jsonplaceholder.typicode.com/users')
+axios.get('/api/match')
         .then(function (response) {
            console.log(response)
 

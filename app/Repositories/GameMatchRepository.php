@@ -2,22 +2,30 @@
 
 namespace App\Repositories;
 
-use App\Models\MatchLeague;
+use App\Models\GameMatch;
 
-class MatchLeagueRepository
+class GameMatchRepository
 {
-    protected $match_league;
+    protected $game_match;
 
     /*  */
 
-    public function __construct(MatchLeague $match_league)
+    public function __construct(GameMatch $game_match)
     {
-        $this->match_league = $match_league;
+        $this->game_match = $game_match;
         
     }
 
     public function getAllMatch()
     {
-        return $this->match_league->get();
+        return $this->game_match->get();
     }
+
+    public function FilterWeek($query, $filters)
+  {
+    if( isset($filters['type']) ){
+      $query->where('type', '=', $filters['type']);
+    }
+   // keep going for all of your filters
+  }
 }
