@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MatchLeagueController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::resource('/match', MatchLeagueController::class);
+Route::resource('/team', TeamController::class);
