@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 
-Route::resource('/match', MatchLeagueController::class);
-Route::resource('/team', TeamController::class);

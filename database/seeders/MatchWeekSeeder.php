@@ -17,12 +17,12 @@ class MatchWeekSeeder extends Seeder
     {
         DB::transaction(function() {
             MatchWeek::insert([
-                ['name' => '1 st'],
-                ['name' => '2 nd'],
-                ['name' => '3 rd'],
-                ['name' => '4 th'],
-                ['name' => '5 th'],
-                ['name' => '6 th'],
+                ['name' => '1.hafta'],
+                ['name' => '2.hafta'],
+                ['name' => '3.hafta'],
+                ['name' => '4.hafta'],
+                ['name' => '5.hafta'],
+                ['name' => '6.hafta'],
             ]);
         });
     }

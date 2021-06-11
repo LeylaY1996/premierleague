@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MatchLeague extends Model
+class GameMatch extends Model
 {
     use HasFactory;
 
@@ -18,4 +18,14 @@ class MatchLeague extends Model
         'away_goal',
         'played',
     ];
+
+    public function homeTeam()
+    {
+        return $this->belongTo(Team::class);
+    }
+
+    public function awayTeam()
+    {
+        return $this->belongTo(Team::class);
+    }
 }

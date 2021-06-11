@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\MatchWeek;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,7 +15,9 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(MatchSeeder::class);
         $this->call(TeamSeeder::class);
+        $this->call(MatchWeekSeeder::class);
+        $this->call(GameMatchSeeder::class);
+
     }
 }
