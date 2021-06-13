@@ -57,8 +57,8 @@ class GameMatchSeeder extends Seeder
                                 "home_team_id" => $team->id, 
                                 "away_team_id" => $opponent->id,
                                 "match_week_id" => $week->id,
-                                "home_goal" => rand(0,5),
-                                "away_goal" => rand(0,5)
+                                "home_goal" => rand(0, 10),
+                                "away_goal" => rand(0,8)
                             ]);
                        
                     }

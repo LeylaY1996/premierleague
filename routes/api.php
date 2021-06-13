@@ -26,5 +26,7 @@ Route::resource('/match', GameMatchController::class);
 Route::resource('/team', TeamController::class);
 Route::resource('/match-week', MatchWeekController::class);
 Route::get('stats/', [StatisticsController::class, 'index']);
+Route::get('stats/filter/{week}', [StatisticsController::class, 'filter']);
+
 
 

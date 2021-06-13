@@ -1845,20 +1845,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 //
 //
 //
@@ -1994,21 +1982,90 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'ExampleComponent',
   data: function data() {
     return {
-      matches: []
+      matches: [],
+      week: 6,
+      weekResults: null,
+      weekOtherResults: null
     };
   },
   mounted: function mounted() {
     console.log(this.getMatches());
     console.log(this.matches);
+    console.log(this.otherResult);
   },
   methods: {
     getMatches: function getMatches() {
       var _this = this;
 
-      axios.get("/api/stats").then(function (response) {
-        return _this.matches = response.data;
+      axios.get("/api/stats/filter/6").then(function (response) {
+        _this.matches = response.data.standings.sort(function (teamA, teamB) {
+          var match = teamB.pts - teamB.pts;
+
+          if (match !== 0) {
+            return match;
+          }
+
+          return teamB.gd - teamB.gd;
+        });
+        var result = [];
+        var otherResult = [];
+        _this.week = 6; // console.log(response.data.matches
+
+        response.data.matches.forEach(function (item) {
+          if (item.match_week_id == 6) {
+            result.push(item);
+            console.log("item");
+          }
+
+          if (6 > item.match_week_id) {
+            otherResult.push(item);
+            console.log(otherResult, "otherREsult");
+          }
+        });
+        _this.weekResults = result;
+        _this.weekOtherResults = otherResult;
+      });
+    },
+    onChange: function onChange(event) {
+      var _this2 = this;
+
+      console.log("weekresult", _typeof(this.weekResult));
+      console.log(event.target.value);
+      axios.get("/api/stats/filter/" + event.target.value).then(function (response) {
+        console.log("Burada", response.data);
+        _this2.matches = response.data.standings.sort(function (teamA, teamB) {
+          var match = teamB.pts - teamB.pts;
+
+          if (match !== 0) {
+            return match;
+          }
+
+          return teamB.gd - teamB.gd;
+        });
+        var result = [];
+        var otherResult = [];
+        _this2.week = event.target.value; // console.log(response.data.matches
+
+        response.data.matches.forEach(function (item) {
+          if (item.match_week_id == event.target.value) {
+            result.push(item);
+            console.log("item");
+          }
+
+          if (event.target.value > item.match_week_id) {
+            otherResult.push(item);
+            console.log(otherResult, "otherREsult");
+          }
+        });
+        _this2.weekResults = result;
+        _this2.weekOtherResults = otherResult;
+        console.log(_this2.weekResults);
+      })["catch"](function (error) {
+        _this2.errorMessage = error.message;
+        console.error("There was an error!", error);
       });
     }
   }
@@ -37568,68 +37625,223 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "premier-league  container   mb-sm-5 mt-5" },
-    [
-      _c("div", { staticClass: "justify-content-center" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-12 col-md-8" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table" }, [
-                  _vm._m(2),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.matches, function(match) {
-                      return _c("tr", { key: match.id }, [
-                        _c("td", [_vm._v(_vm._s(match.id))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("img", { attrs: { src: match.logo, alt: "" } }),
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(match.team) +
-                              "\n                  "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.pts))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.played))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.win))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.draw))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.loss))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.gd))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(match.week))])
-                      ])
-                    }),
-                    0
-                  )
-                ])
+  return _c("div", { staticClass: "premier-league container mb-sm-5" }, [
+    _c("div", { staticClass: "justify-content-center" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-md-12 mb-5 text-center" }, [
+          _c(
+            "select",
+            {
+              staticClass: "form-select",
+              attrs: { "aria-label": "filter-week" },
+              on: {
+                change: function($event) {
+                  return _vm.onChange($event)
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "1" } }, [_vm._v("One Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "2" } }, [_vm._v("Two Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "3" } }, [_vm._v("Three Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "4" } }, [_vm._v("Four Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "5" } }, [_vm._v("Five Week")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "6", selected: "" } }, [
+                _vm._v("Six Week")
+              ])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-12 col-md-8" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _vm._m(1),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.matches, function(match) {
+                    return _c("tr", { key: match.id }, [
+                      _c("td", [_vm._v(_vm._s(match.id))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("img", { attrs: { src: match.logo, alt: "" } }),
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(match.team) +
+                            "\n                  "
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.pts))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.played))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.win))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.draw))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.loss))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(match.gd))])
+                    ])
+                  }),
+                  0
+                )
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
+          ])
         ]),
         _vm._v(" "),
-        _vm._m(4),
-        _vm._v(" "),
-        _vm._m(5)
-      ])
-    ]
-  )
+        _c("div", { staticClass: "col-sm-12 col-md-4 mt-sm-5" }, [
+          _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "table-responsive" }, [
+              _c("table", { staticClass: "table" }, [
+                _c("thead", { staticClass: "thead-dark" }, [
+                  _c("tr", [
+                    _c("th", { attrs: { scope: "col" } }, [
+                      _vm._v("Match Results")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.week,
+                          expression: "week"
+                        }
+                      ],
+                      attrs: { type: "hidden", placeholder: "edit me" },
+                      domProps: { value: _vm.week },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.week = $event.target.value
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("th", [
+                      _vm._v(_vm._s(_vm.week) + ". Week Match Results")
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.weekResults, function(weekResult) {
+                    return _c("tr", { key: weekResult.id }, [
+                      _c("td", [_vm._v("Sonuç")]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c("img", {
+                          attrs: { src: weekResult.home_team.logo, alt: "" }
+                        }),
+                        _vm._v(
+                          "\n                    " +
+                            _vm._s(weekResult.home_team.name) +
+                            " " +
+                            _vm._s(weekResult.home_goal) +
+                            "-" +
+                            _vm._s(weekResult.away_goal) +
+                            " " +
+                            _vm._s(weekResult.away_team.name) +
+                            "\n                    "
+                        ),
+                        _c("img", {
+                          attrs: { src: weekResult.away_team.logo, alt: "" }
+                        })
+                      ])
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.weekOtherResults, function(weekResult) {
+          return _c(
+            "div",
+            { key: weekResult.id, staticClass: "col-sm-12 col-md-4 mb-sm-5" },
+            [
+              _c("div", { staticClass: "card" }, [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c("table", { staticClass: "table" }, [
+                    _c("thead", { staticClass: "thead-dark" }, [
+                      _c("tr", [
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v("Match Results")
+                        ]),
+                        _vm._v(" "),
+                        _c("th", [
+                          _vm._v(
+                            _vm._s(weekResult.match_week_id) +
+                              ". Week Match Results"
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.weekResults, function(weekResult) {
+                        return _c("tr", { key: weekResult.id }, [
+                          _c("td", [_vm._v("Sonuç")]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("img", {
+                              attrs: { src: weekResult.home_team.logo, alt: "" }
+                            }),
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(weekResult.home_team.name) +
+                                " " +
+                                _vm._s(weekResult.home_goal) +
+                                "-" +
+                                _vm._s(weekResult.away_goal) +
+                                " " +
+                                _vm._s(weekResult.away_team.name) +
+                                "\n                    "
+                            ),
+                            _c("img", {
+                              attrs: { src: weekResult.away_team.logo, alt: "" }
+                            })
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                ])
+              ])
+            ]
+          )
+        }),
+        0
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -37639,33 +37851,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-sm-12 col-md-12 mt-3 text-center" }, [
         _c("img", { attrs: { src: "/img/plogo2.png", alt: "" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12 col-md-12 mb-5 text-center" }, [
-        _c(
-          "select",
-          {
-            staticClass: "form-select",
-            attrs: { "aria-label": "filter-week" }
-          },
-          [
-            _c("option", { attrs: { selected: "" } }, [
-              _vm._v("All Matchweeks")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "1" } }, [_vm._v("One")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "2" } }, [_vm._v("Two")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "3" } }, [_vm._v("Three")])
-          ]
-        )
       ])
     ])
   },
@@ -37689,39 +37874,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("L")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Week")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-12 col-md-4  mt-sm-5" }, [
-      _c("div", { staticClass: "card" }, [
-        _c("div", { staticClass: "table-responsive" }, [
-          _c("table", { staticClass: "table" }, [
-            _c("thead", { staticClass: "thead-dark" }, [
-              _c("tr", [
-                _c("th", { attrs: { scope: "col" } }, [
-                  _vm._v("Match Results")
-                ]),
-                _vm._v(" "),
-                _c("th", [_vm._v("4. Week Match Results")])
-              ])
-            ]),
-            _vm._v(" "),
-            _c("tbody", [
-              _c("tr", [
-                _c("td", [_vm._v("Sonuç")]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
-              ])
-            ])
-          ])
-        ])
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")])
       ])
     ])
   },
@@ -37732,90 +37885,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col text-center mb-3" }, [
         _c("h3", [_vm._v("Other Week Results")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-sm-12 col-md-4  mb-sm-5" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table" }, [
-              _c("thead", { staticClass: "thead-dark" }, [
-                _c("tr", [
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("Match Results")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("4. Week Match Results")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("Sonuç")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-12 col-md-4  mb-sm-5" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table" }, [
-              _c("thead", { staticClass: "thead-dark" }, [
-                _c("tr", [
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("Match Results")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("4. Week Match Results")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("Sonuç")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
-                ])
-              ])
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-sm-12 col-md-4" }, [
-        _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "table-responsive" }, [
-            _c("table", { staticClass: "table" }, [
-              _c("thead", { staticClass: "thead-dark" }, [
-                _c("tr", [
-                  _c("th", { attrs: { scope: "col" } }, [
-                    _vm._v("Match Results")
-                  ]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("4. Week Match Results")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("tbody", [
-                _c("tr", [
-                  _c("td", [_vm._v("Sonuç")]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
-                ])
-              ])
-            ])
-          ])
-        ])
       ])
     ])
   }

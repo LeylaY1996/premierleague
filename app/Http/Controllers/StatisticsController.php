@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\StatisticsService;
+use Illuminate\Http\Request;
 
 class StatisticsController extends Controller
 {
@@ -15,6 +16,11 @@ class StatisticsController extends Controller
     public function index()
     {
         $data =$this->statisticsService->getAll();
+        return response()->json($data);
+    }
+    public function filter(Request $request, int $week)
+    {
+        $data =$this->statisticsService->filterByWeek($week);
         return response()->json($data);
     }
 }

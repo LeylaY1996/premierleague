@@ -21,12 +21,12 @@ class GameMatch extends Model
 
     public function homeTeam()
     {
-        return $this->belongTo(Team::class);
+        return $this->belongsTo(Team::class, 'home_team_id');
     }
 
     public function awayTeam()
     {
-        return $this->belongTo(Team::class);
+        return $this->belongsTo(Team::class, 'away_team_id');
     }
 
     public function isHomeTeam($team)

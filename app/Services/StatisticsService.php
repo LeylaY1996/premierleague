@@ -35,9 +35,45 @@ class StatisticsService
                
             }
         }
-        return $data;
+        return [
+            "standings" => $data,
+            "matches" => GameMatch::with('homeTeam', 'awayTeam')->get()
+        ];
     }
 
+    public function filterByWeek(int $week)
+    {
+        $teams = Team::all();
+        $data = [];
+        for ($i=1; $i <= $week; $i++) { 
+            $gameWeek = MatchWeek::find($i);
+            foreach ($teams as $key => $team) {
+                $gameData = $this->getGameDada($team, $gameWeek);
+                $gameData['team'] = $team->name;
+                $gameData['logo'] = $team->logo;
+                
+                $key = array_search($team->name, array_column($data, 'team'));
+                if($key !== false){
+                    $data[$key]['played'] += $gameData['played'];
+                    $data[$key]['pts'] += $gameData['pts'];
+                    $data[$key]['win'] += $gameData['win'];
+                    $data[$key]['draw'] += $gameData['draw'];
+                    $data[$key]['loss'] += $gameData['loss'];
+                    $data[$key]['gd'] += $gameData['gd'];
+
+                    
+                }else{
+                    array_push($data, $gameData);
+                }
+               
+            }
+        }
+
+        return [
+            "standings" => $data,
+            "matches" => GameMatch::with('homeTeam', 'awayTeam')->get()
+        ];
+    }
     private function getGameDada($team, $week)
     {
         $match = $this->getMatch($team, $week);
@@ -53,6 +89,7 @@ class StatisticsService
                 $win += 1;
                 $gd = abs($match->home_goal - $match->away_goal); 
             }
+            
         } else {
             if ($match->away_goal > $match->away_goal) {
                 $pts = 3;
@@ -64,7 +101,7 @@ class StatisticsService
             $pts = 1;
             $draw += 1;
         }
-
+        
         if($pts == 0){
             $loss += 1;
         }
