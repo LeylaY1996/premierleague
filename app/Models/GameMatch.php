@@ -28,4 +28,12 @@ class GameMatch extends Model
     {
         return $this->belongTo(Team::class);
     }
+
+    public function isHomeTeam($team)
+    {
+        if($this->home_team_id ==  $team->id){
+            return true;
+        }
+        return false;
+    }
 }

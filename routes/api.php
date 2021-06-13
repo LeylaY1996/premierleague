@@ -4,6 +4,7 @@ use App\Http\Controllers\GameMatchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MatchWeekController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Controllers\TeamController;
 
 /*
@@ -24,5 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/match', GameMatchController::class);
 Route::resource('/team', TeamController::class);
 Route::resource('/match-week', MatchWeekController::class);
+Route::get('stats/', [StatisticsController::class, 'index']);
 
 

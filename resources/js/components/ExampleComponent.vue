@@ -84,7 +84,7 @@ data() {
 	return {
 		members: [],
 		numberOfMembers:0,
-        users: []
+        matches: []
 	};
 },
 methods: {
@@ -97,10 +97,15 @@ methods: {
 },
 mounted() {
 /* this.getMembers(); */
-axios.get('/api/match')
+axios.get('/api/stats')
         .then(function (response) {
-           console.log(response)
-
+          console.log(response.data)
+          console.log(response.data.sort());
+          
+         /*  response.data.forEach(element => {
+            console.log(element.pts)
+            
+          }); */
         })
         .catch(function (error) {
             console.log(error);

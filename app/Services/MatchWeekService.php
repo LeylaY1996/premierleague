@@ -18,8 +18,4 @@ class MatchWeekService
         return $this->matchWeekRepository->getAllMatchWeek()
 ;    }
 
-    public function show($model)
-    {
-     return $this->matchWeekRepository->show($model);
-    }
 }

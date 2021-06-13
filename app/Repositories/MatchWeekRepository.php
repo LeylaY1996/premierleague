@@ -21,10 +21,5 @@ class MatchWeekRepository
         return $this->matchWeek->get();
     }
 
-    public function show($matchWeek)
-    {
-      $matchWeek = MatchWeek::getById($matchWeek->id)->first();
-  
-      return $matchWeek;
-    }
+ 
 }

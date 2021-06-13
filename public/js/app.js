@@ -1928,7 +1928,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       members: [],
       numberOfMembers: 0,
-      users: []
+      matches: []
     };
   },
   methods: {
@@ -1941,8 +1941,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     /* this.getMembers(); */
-    axios.get('/api/match').then(function (response) {
-      console.log(response);
+    axios.get('/api/stats').then(function (response) {
+      console.log(response.data);
+      console.log(response.data.sort());
+      /*  response.data.forEach(element => {
+         console.log(element.pts)
+         
+       }); */
     })["catch"](function (error) {
       console.log(error);
     });

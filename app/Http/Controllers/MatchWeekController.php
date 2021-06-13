@@ -35,8 +35,5 @@ class MatchWeekController extends Controller
           return response()->json($result,$result['status']);
       }
 
-      public function show(MatchWeek $matchWeek)
-      {
-          return $this->showOne($this->matchWeekService->show($matchWeek));
-      }
+    
 }
