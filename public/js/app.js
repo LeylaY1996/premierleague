@@ -1922,35 +1922,95 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  components: {},
   data: function data() {
     return {
-      members: [],
-      numberOfMembers: 0,
       matches: []
     };
   },
-  methods: {
-    /* getMembers(){
-        apiService.getMembers().then((data) => {
-            this.members = data.data;
-            this.numberOfMembers= data.count;
-        });
-    }, */
-  },
   mounted: function mounted() {
-    /* this.getMembers(); */
-    axios.get('/api/stats').then(function (response) {
-      console.log(response.data);
-      console.log(response.data.sort());
-      /*  response.data.forEach(element => {
-         console.log(element.pts)
-         
-       }); */
-    })["catch"](function (error) {
-      console.log(error);
-    });
+    console.log(this.getMatches());
+    console.log(this.matches);
+  },
+  methods: {
+    getMatches: function getMatches() {
+      var _this = this;
+
+      axios.get("/api/stats").then(function (response) {
+        return _this.matches = response.data;
+      });
+    }
   }
 });
 
@@ -37508,119 +37568,250 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    { staticClass: "premier-league  container   mb-sm-5 mt-5" },
+    [
+      _c("div", { staticClass: "justify-content-center" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12 col-md-8" }, [
+            _c("div", { staticClass: "card" }, [
+              _c("div", { staticClass: "table-responsive" }, [
+                _c("table", { staticClass: "table" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.matches, function(match) {
+                      return _c("tr", { key: match.id }, [
+                        _c("td", [_vm._v(_vm._s(match.id))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("img", { attrs: { src: match.logo, alt: "" } }),
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(match.team) +
+                              "\n                  "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.pts))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.played))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.win))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.draw))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.loss))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.gd))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(match.week))])
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(3)
+        ]),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5)
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "justify-content-center mt-5" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-4 mb-5" }, [
-            _c(
-              "select",
-              {
-                staticClass: "form-select",
-                attrs: { "aria-label": "Default select example" }
-              },
-              [
-                _c("option", { attrs: { selected: "" } }, [
-                  _vm._v("Filter By MatchWeek")
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12 col-md-12 mt-3 text-center" }, [
+        _c("img", { attrs: { src: "/img/plogo2.png", alt: "" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12 col-md-12 mb-5 text-center" }, [
+        _c(
+          "select",
+          {
+            staticClass: "form-select",
+            attrs: { "aria-label": "filter-week" }
+          },
+          [
+            _c("option", { attrs: { selected: "" } }, [
+              _vm._v("All Matchweeks")
+            ]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "1" } }, [_vm._v("One")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "2" } }, [_vm._v("Two")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "3" } }, [_vm._v("Three")])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "thead-dark" }, [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Teams")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("PTS")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Played")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("W")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("D")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("L")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Week")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-12 col-md-4  mt-sm-5" }, [
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "table-responsive" }, [
+          _c("table", { staticClass: "table" }, [
+            _c("thead", { staticClass: "thead-dark" }, [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [
+                  _vm._v("Match Results")
                 ]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "1" } }, [_vm._v("One")]),
+                _c("th", [_vm._v("4. Week Match Results")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("td", [_vm._v("Sonuç")]),
                 _vm._v(" "),
-                _c("option", { attrs: { value: "2" } }, [_vm._v("Two")]),
-                _vm._v(" "),
-                _c("option", { attrs: { value: "3" } }, [_vm._v("Three")])
-              ]
-            )
+                _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
+              ])
+            ])
           ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-8" }, [
-            _c("div", { staticClass: "card" }, [
-              _c("div", { staticClass: "table-responsive" }, [
-                _c("table", { staticClass: "table" }, [
-                  _c("thead", { staticClass: "thead-dark" }, [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("#")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("Teams")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("PTS")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("P")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("W")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("D")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("L")]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("GD")])
-                    ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row mt-5" }, [
+      _c("div", { staticClass: "col text-center mb-3" }, [
+        _c("h3", [_vm._v("Other Week Results")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-sm-12 col-md-4  mb-sm-5" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table" }, [
+              _c("thead", { staticClass: "thead-dark" }, [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Match Results")
                   ]),
                   _vm._v(" "),
-                  _c("tbody", [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Mark")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Otto")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@mdo")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Jacob")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Thornton")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@fat")])
-                    ]),
-                    _vm._v(" "),
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Larry")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("the Bird")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("@twitter")])
-                    ])
-                  ])
+                  _c("th", [_vm._v("4. Week Match Results")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("Sonuç")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
                 ])
               ])
             ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-4" }, [
-            _c("div", { staticClass: "card p-4 pb-5" }, [
-              _c("p", [_vm._v("Match Results")]),
-              _vm._v(" "),
-              _c("p", [_vm._v("4. Week Match Results")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("Liverpool")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("2-2")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("Chelsea")])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12 col-md-4  mb-sm-5" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table" }, [
+              _c("thead", { staticClass: "thead-dark" }, [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Match Results")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("4. Week Match Results")])
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("Liverpool")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("2-2")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4" }, [_vm._v("Chelsea")])
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("Sonuç")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm-12 col-md-4" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "table-responsive" }, [
+            _c("table", { staticClass: "table" }, [
+              _c("thead", { staticClass: "thead-dark" }, [
+                _c("tr", [
+                  _c("th", { attrs: { scope: "col" } }, [
+                    _vm._v("Match Results")
+                  ]),
+                  _vm._v(" "),
+                  _c("th", [_vm._v("4. Week Match Results")])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("tbody", [
+                _c("tr", [
+                  _c("td", [_vm._v("Sonuç")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Liverpool 2-2 Chelsea")])
+                ])
               ])
             ])
           ])

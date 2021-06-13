@@ -17,6 +17,8 @@ class StatisticsService
             foreach ($teams as $key => $team) {
                 $gameData = $this->getGameDada($team, $week);
                 $gameData['team'] = $team->name;
+                $gameData['logo'] = $team->logo;
+
                 $key = array_search($team->name, array_column($data, 'team'));
                 if($key !== false){
                     $data[$key]['played'] += $gameData['played'];
