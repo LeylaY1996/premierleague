@@ -58,19 +58,11 @@ body {
   margin: 0;
   font-family: "Nunito", sans-serif;
   font-size: 0.9rem;
-  /* font-weight: 400; */
+  font-weight: 400;
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background: url(../img/premier_league_pattern.gif);
-  background-repeat:repeat; 
-  height: 100%;
-
-}
-.premier-league {
-  margin-top: 5rem;
-  height: auto;
-  background: #fff;
+  background-color: #f8fafc;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -364,6 +356,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -10008,36 +10001,4 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
-}
-h2 {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.table-bordered {
-  border: 1px solid #ddd !important;
-}
-
-table caption {
-	padding: .5em 0;
-}
-
-@media screen and (max-width: 767px) {
-  table caption {
-    display: none;
-  }
-}
-
-.p {
-  text-align: center;
-  padding-top: 140px;
-  font-size: 14px;
-}
-
-.form-select {
-  padding: 0.5rem;
-  width: 200px;
-  font-family: 'Courier New', Courier, monospace;
-  text-align: center;
-  font-size:medium
 }

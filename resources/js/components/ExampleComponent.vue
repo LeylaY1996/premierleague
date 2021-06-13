@@ -107,7 +107,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="weekResult in weekResults" :key="weekResult.id">
+                  <tr>
                     <td>Sonuç</td>
                     <td>
                       <img

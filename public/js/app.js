@@ -37803,35 +37803,31 @@ var render = function() {
                       ])
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.weekResults, function(weekResult) {
-                        return _c("tr", { key: weekResult.id }, [
-                          _c("td", [_vm._v("Sonuç")]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c("img", {
-                              attrs: { src: weekResult.home_team.logo, alt: "" }
-                            }),
-                            _vm._v(
-                              "\n                    " +
-                                _vm._s(weekResult.home_team.name) +
-                                " " +
-                                _vm._s(weekResult.home_goal) +
-                                "-" +
-                                _vm._s(weekResult.away_goal) +
-                                " " +
-                                _vm._s(weekResult.away_team.name) +
-                                "\n                    "
-                            ),
-                            _c("img", {
-                              attrs: { src: weekResult.away_team.logo, alt: "" }
-                            })
-                          ])
+                    _c("tbody", [
+                      _c("tr", [
+                        _c("td", [_vm._v("Sonuç")]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c("img", {
+                            attrs: { src: weekResult.home_team.logo, alt: "" }
+                          }),
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(weekResult.home_team.name) +
+                              " " +
+                              _vm._s(weekResult.home_goal) +
+                              "-" +
+                              _vm._s(weekResult.away_goal) +
+                              " " +
+                              _vm._s(weekResult.away_team.name) +
+                              "\n                    "
+                          ),
+                          _c("img", {
+                            attrs: { src: weekResult.away_team.logo, alt: "" }
+                          })
                         ])
-                      }),
-                      0
-                    )
+                      ])
+                    ])
                   ])
                 ])
               ])
